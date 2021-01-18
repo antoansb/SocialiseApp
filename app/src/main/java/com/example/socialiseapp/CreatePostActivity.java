@@ -101,6 +101,9 @@ public class CreatePostActivity extends AppCompatActivity {
             Log.i("Uri", taskSnapshot.getUploadSessionUri().toString());
 
             Intent intent = new Intent(this, UsersActivity.class);
+            intent.putExtra("imageURL", taskSnapshot.getUploadSessionUri().toString());
+            intent.putExtra("imageName", imageName);
+            intent.putExtra("message", editTextMessage.getText().toString());
             startActivity(intent);
         });
     }
