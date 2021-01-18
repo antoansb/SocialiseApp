@@ -99,6 +99,9 @@ public class CreatePostActivity extends AppCompatActivity {
             Toast.makeText(this, "Upload failed!", Toast.LENGTH_LONG).show();
         }).addOnSuccessListener(taskSnapshot -> {
             Log.i("Uri", taskSnapshot.getUploadSessionUri().toString());
+
+            Intent intent = new Intent(this, UsersActivity.class);
+            startActivity(intent);
         });
     }
 }

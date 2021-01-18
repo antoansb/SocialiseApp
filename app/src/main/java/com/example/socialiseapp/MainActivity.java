@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                         mAuth.createUserWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString())
                                 .addOnCompleteListener(this, task1 -> {
                                     if (task1.isSuccessful()) {
+                                        FirebaseDatabase.getInstance().getReference().child("users").child(task1.getResult().getUser().getUid()).child("email").setValue(emailEditText.getText().toString());
                                         login();
                                     } else {
                                         Toast.makeText(this, "Login failed. Try again!", Toast.LENGTH_LONG).show();
